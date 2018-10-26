@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Select a tag:</h1>
+  <%= simple_form_for [@plant, @plant_tag] do |form| %>
+    <%= form.association :tag, collection: Tag.all, input_html: { multiple: true, class: 'select2' }, include_hidden: false %>
+    <%= form.submit %>
+  <% end %>
+</div>
