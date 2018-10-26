@@ -6,8 +6,7 @@ class PlantTagsController < ApplicationController
 
   def create
     @plant = Plant.find(params[:plant_id])
-    raise
-    params[:plant_tag][:tag_id].each do |tag_id|
+    plant_tag_params[:tag_id].each do |tag_id|
       plant_tag = PlantTag.new(tag_id: tag_id)
       plant_tag.plant = @plant
       plant_tag.save
@@ -18,6 +17,6 @@ class PlantTagsController < ApplicationController
   private
 
   def plant_tag_params
-    params.require(:plant_tag).permit(:tag_id)
+    params.require(:plant_tag).permit(tag_id: [])
   end
 end
