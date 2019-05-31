@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <h1>Add new tag to <%= @plant.name %></h1>
+      <%= simple_form_for [@plant, @tagging] do |form| %>
+        <%# Next line is simple_form magic to give us a select with all the tags in our DB %>
+        <%= form.association :tag %>
+
+        <%# Advanced challenge, folks! %>
+        <%# So far our select shows Tag.all (it defaults the collection parameter to it). %>
+        <%# But... what if we wanted to show only the tags not yet associated with the current plant? %>
+        <%# Tip: you're gonna need #left_joins. %>
+        <%# Tip2: Tie it in a nice active_record scope. So you could call it like this: Tag.untagged_by(@plant) %>
+        <%#= form.association :tag, collection: Tag.all %>
+
+        <%= form.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
